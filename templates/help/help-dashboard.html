@@ -1,0 +1,40 @@
+{% extends 'help/help.html' %}
+			
+{% block help %}
+
+	<br>
+	<h4 class="text-center">Selected: <span class="selected-help">Dashboard</span></h4>
+	<br>
+
+	<p>The Dashboard is your <i><b>Summary</b></i> and it shows you the current status of your inventory. This is where you get all your stock notifictions. Notifications are divided into 2 groups.</p>
+
+	<ol>
+		<li>1. Stock Level Notifications</li>
+		<li>2. Expiry Notifiation</li>
+	</ol>
+
+	<hr>
+	<h4>Stock Level Notifications</h4>
+	<p>The Heading is self explanatory. This is where you will get notified of any stock that is:</p>
+	<ol>
+		<li>1. Out of Stock</li>
+		<li>2. Below Min Stock</li>
+		<li>3. Over Max Stock</li>
+		<li>4. Approaching Min Stock</li>
+		<li>5. At Minimun Stock</li>
+	</ol>
+	<p>NB: You will also find links below the Stock Level Notifications that lead you a specific list of the selected only notififcation</p>
+
+	<hr>
+	<h4>Expiry Notifications</h4>
+	<p>The Heading is self explanatory. This is where you will get all Expiry Related Notifications listed below:</p>
+	<ol>
+		<li>1. Expired Stock</li>
+		<li>2. Expiring Today</li>
+		<li>3. Expiring this Week</li>
+		<li>4. Expiring this Month</li>
+	</ol>
+	<p>NB: You will also find links below the Expired Notifications that lead you a specific list of the selected only notififcation</p>
+
+
+{% endblock %}. 

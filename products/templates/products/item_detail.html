@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div>
+        <h1>{{ item.name }}
+            <a class="btn btn-default" href="{% url 'products:item_edit' pk=item.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'products:item_remove' pk=item.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+        </h1>
+        <hr>
+        <div class="row">
+            <div class="col-sm-2">
+                <li>Description:</li>
+
+            </div>
+            <div class="col-sm-3">
+                <li>{{ item.description }}</li>
+            </div>
+        </div>
+    </div>
+{% endblock %}

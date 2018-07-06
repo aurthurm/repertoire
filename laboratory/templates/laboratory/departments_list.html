@@ -1,0 +1,22 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	Lab Departments
+	<a class = "pull-right" href="{% url 'laboratory:department_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'laboratory:department_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'laboratory:department_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'laboratory:department_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+	<br>
+    <h2>Create departments for your Laboratory</h2>
+    <p>	You can only proceed with this step after you have created a laboratory. If you have done so already, please do and then return</p>
+    <br><br>
+{% endblock %}

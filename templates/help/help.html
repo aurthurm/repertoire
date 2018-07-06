@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<br>
+	<h3>Choose a section from the list below for more</h3>
+	<br>
+	<table class="table table-bordered table-inverse">
+	  <thead>
+	    <tr>
+	      <th>#</th>
+	      <th>Section / Menu Help link</th>
+	      <th>Help Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th scope="row">1</th>
+	      <td><a href="{% url 'help-settings' %}">Settings</a></td>
+	      <td>initial Setup - Crucial</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">2</th>
+	      <td><a href="{% url 'help-dashboard' %}">Dashboard</a></td>
+	      <td>Overview of your Stocks</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">3</th>
+	      <td><a href="{% url 'help-inventory' %}">Inventory</a></td>
+	      <td>Stock Detail</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">4</th>
+	      <td><a href="{% url 'help-suppliers' %}">Supplier</a></td>
+	      <td>Registered Supplier List</td>
+	    </tr>
+	    <tr>
+	      <th scope="row">5</th>
+	      <td><a href="{% url 'help-icons' %}">Icons and Colors</a></td>
+	      <td>Icons used by the system</td>
+	    </tr>
+	  </tbody>
+	</table>
+
+	<!-- help text selected -->
+	<div class="help-content">
+		{% block help %}{% endblock %}
+	</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,22 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	All Hazards
+	<a class = "pull-right" href="{% url 'products:hazard_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'products:hazard_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'products:hazard_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'products:hazard_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+	<br>
+    <h2>Hazards not Found</h2>
+    <p>Start creating a list of hazards according to the types of iventory thata you use</p>
+    <br><br>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+
+
+{% block content %}
+
+            <h3>All Adjustments
+                <a class = "pull-right" href="{% url 'movements:new_adjustment' %}" data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+            </h3>
+            <hr>
+            {% render_table adjustments %}
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script type="text/javascript" >
+            $('.table-container').addClass('table-responsive');
+            $('.table-responsive').removeClass('table-container');
+            $('.paleblue').addClass('table');
+    </script>
+{% endblock %}
+
+<!--             <table class = "table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Adjustment Type</th>
+            <th>Ajust</th>
+            <th>Date Adjusted</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for adjustment in adjustments %}
+            <tr>
+                <td>{{ adjustment.product }}</td>
+                <td>{{ adjustment.adjustment_type }}</td>
+                <td>{{ adjustment.adjust }}</td>
+                <td>{{ adjustment.adjustment_date }}</td>
+                <td>{{ adjustment.remarks }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if adjustments.has_other_pages %}
+    <ul class="pagination">
+        {% if adjustments.has_previous %}
+            <li><a href="?page={{ adjustments.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in adjustments.paginator.page_range %}
+            {% if adjustments.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if adjustments.has_next %}
+        <li><a href="?page={{ adjustments.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+{% endif %} -->

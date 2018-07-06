@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<br>
+    <form method="POST" class="form-horizontal post-form" id="editBase">{% csrf_token %}
+        <p class="availableMessage" hidden="hidden"></p>
+        {% for field in form %}
+            <div class="form-group fieldWrapper">
+                {{ field.errors }}
+                <div class="col-sm-2">
+                  {% if field.is_hidden %}
+                    {# Hide Label #}
+                  {% else %}
+                    {{ field.label_tag }}
+                  {% endif %}
+                </div>
+                <div class="col-sm-10">
+                    {{ field }}
+                </div>
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+
+{% block scripts %}
+    {{ form.media }}
+    {# Transaction Validation #}
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/additional-methods.min.js' %}"></script>
+    <script>
+      const checkValue = "{{ check  | safe | escapejs}}";
+      var available_stock = "{{ available_stock  | safe | escapejs}}";
+      available_stock = (available_stock * 1)
+
+      if (checkValue === "TransactionNew"){
+          const stock_message = "Available:" + " <span class=\"badge\">" + available_stock.toString() + "</span>"
+          $("button[type=submit]").attr("disabled", "disabled");
+          // $('#id_product option').prop('disabled', 'disabled'); // allow only instance product
+          $("p.availableMessage").removeAttr("hidden").append(stock_message);
+          $('#id_issued').keyup(function(event) {
+          	var input=$(this);
+          	var value=$(this).val();
+          	if((value > 0) && (value <= available_stock)){
+              $("button[type=submit]").removeAttr("disabled");
+            }else{
+              $("button[type=submit]").attr("disabled", "disabled");
+            }
+          });
+      } else if (checkValue === "AdjustmentNew"){
+          const stock_message = "Available:" + " <span class=\"badge\">" + available_stock.toString() + "</span>"
+          $("button[type=submit]").attr("disabled", "disabled");
+          // $('#id_product option').prop('disabled', 'disabled'); // allow only instance product
+          $("p.availableMessage").removeAttr("hidden").append(stock_message);
+
+          var selected;
+
+          $('#id_adjustment_type').change(function(event) {
+              var option = $(this);
+              selected = $(this).val();
+              // console.log(selected);
+
+          });
+          $('#id_adjust').keyup(function(event) {
+            var input=$(this);
+            var value=$(this).val();
+
+            if (selected === "TRANSFER IN"){
+                if(value > 0){
+                    $("button[type=submit]").removeAttr("disabled");
+                    // console.log(value);
+                }else{
+                    $("button[type=submit]").attr("disabled", "disabled");
+                    // console.log(value);
+                }
+            } else {
+                if((value > 0) && (value <= available_stock)){
+                    $("button[type=submit]").removeAttr("disabled");
+                    // console.log(value);
+                }else{
+                    $("button[type=submit]").attr("disabled", "disabled");
+                    // console.log(value);
+                }
+            }
+          });
+        } else { // Do nothing
+          }
+
+    </script>
+{% endblock %}

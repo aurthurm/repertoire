@@ -1,0 +1,22 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	All Stores
+	<a class = "pull-right" href="{% url 'laboratory:store_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'laboratory:store_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'laboratory:store_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'laboratory:store_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+	<br>
+    <h2>You have not created any storage facilities</h2>
+    <p>Please Click on the top right green plus sign to start creating your Storage Units / Facilities.</p>
+    <br><br>
+{% endblock %}

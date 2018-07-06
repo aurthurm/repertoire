@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	{% if all_departments %}
+		<div class="row text-center departments">
+			{% for department in all_departments %}
+				<div class="col-sm-4 {{ department.name }}">
+
+				<div class="row">
+					<div class="col-sm-12 flatten-image">
+						<h2>{{ department.name }}</h2>
+					</div>
+					<hr>
+					<hr>
+					<div class="col-sm-12">
+					<div class="btn btn-group">
+											<a class="btn btn-primary btn-md" href="{% url 'products:departmental_stocks' department_id=department.pk  %}" title="">Products</a>
+											<a class="btn btn-default btn-md" href="{% url 'products:departmental_items' pk=department.pk %}" title="">Items</a>
+					</div>
+					</div>
+				</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+	    <div class="row warning-message-empty">
+            <div class="bg-danger">
+                <br>
+                <h2>No Departments</h2>
+                <p>Go to settings and register your laboratory departments and they will auto populate in this area after which you wont be able to see this message</p>
+                <br><br>
+            </div>
+        </div>
+	{% endif %}
+
+{% endblock %}

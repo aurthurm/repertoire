@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br>
+    <h2>Order Number: {{ order.order_number }}</h2>
+    <hr>
+    <table class = "table table-hover table-striped">
+
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Availble</th>
+          <th>Order quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in all_products %}
+          <tr>
+            <td>{{ product.product }}</td>
+            <td>{{ product.product.remaining }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if order.order_state == False %}
+      <a type="button" class="btn btn-success pull-right" href="{% url 'order:process_order' order_id=order.pk %}">Process Order [Issue]</a>
+    {% else %}
+      <a type="button" class="btn btn-success pull-right" href="{% url 'order:orders' %}">View Orders</a>
+    {% endif %}
+
+{% endblock %}

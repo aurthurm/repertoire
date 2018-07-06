@@ -1,0 +1,14 @@
+{% extends 'order/orders-base.html' %}
+
+{% block orders_navigation %}
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="{% url 'order:orders' %}">Un Processed Orders</a></li>
+      <li role="presentation" class="active"><a href="#">Processed Orders</a></li>
+    </ul>
+    <br>
+{% endblock %}
+
+{% block orders_else %}
+      <br>
+      <p class="lead">You have no processed orders yet</p>
+{% endblock %}

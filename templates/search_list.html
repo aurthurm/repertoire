@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Search results</h2>
+    <hr>
+    {% for something in object_list %}
+    	{% if something.lot_number %}
+    		<li class = "searched-item"><a href="{% url 'products:stock_detail' pk=something.pk %}">
+    			{{ something }}
+    		</a></li>
+    	{% else %}
+    		<li class = "searched-item"><a href="{% url 'products:item_detail' pk=something.pk %}">
+    			{{ something.name }}
+    		</a></li>
+    	{% endif %}
+    {% empty %}
+        <p>Sorry we didnt get what you are looking. Try again witha different search term</p>
+    {% endfor %}
+
+{% endblock %}

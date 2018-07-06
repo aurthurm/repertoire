@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+	<h3>
+		All Suppliers  <a class = "pull-right" href="{% url 'laboratory:supplier_new' %}" data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+	</h3>
+	<hr>
+	<table class = "table table-responsive">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Mobile</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>Country</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class = "to-affect">
+			{% for supplier in suppliers %}
+				<tr class = "affect">
+					<td>
+                        <a class="edit-this" href="{% url 'laboratory:supplier_edit' pk=supplier.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <span> | </span>
+                        <a class="delete-this" href="{% url 'laboratory:supplier_remove' pk=supplier.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+					<td>
+						<a href="{% url 'laboratory:supplier_detail' pk=supplier.pk %}" title="">{{ supplier.name }}</a>
+					</td>
+					<td>{{ supplier.email }}</td>
+					<td>{{ supplier.phone }}</td>
+					<td>{{ supplier.mobile }}</td>
+					<td>{{ supplier.address }}</td>
+					<td>{{ supplier.city }}</td>
+					<td>{{ supplier.country }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

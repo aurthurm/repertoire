@@ -1,0 +1,11 @@
+{% extends 'multi_detail_base.html' %}
+
+{% block multi_base_title %}
+	Package
+{% endblock %}
+
+
+{% block multi_glyphs %}
+            <a class="btn btn-default" href="{% url 'products:package_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'products:package_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div>
+        <h1>{{ product.name }}
+            <a class="btn btn-default" href="{% url 'products:stock_edit' pk=product.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'products:stock_remove' pk=product.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class = "pull-right" href="{% url 'products:stock_new' department_id %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+            <form class="basket-add-btn" action="{% url "basket:basket_add" product_id=product.pk %}" method="post">
+                {% csrf_token %}
+                {{ basket_product_form }}
+                <input type="submit" value="add to basket" class="btn btn-primary btn-sm addToBasket">
+            </form>
+        </h1>
+        <hr>
+        <div class="row tablelike">
+            <div class="col-sm-4" style = "border-right: 1px solid red;">
+                <div class="row stock">
+                    <div class="col-sm-6">
+                        <li>Department:</li>
+                        <li>Supplier:</li>
+                        <li>Category:</li>
+                        <li>Hazard:</li>
+                        <li>lot Number:</li>
+                        <li>Batch:</li>
+                        <li>Size:</li>
+                        <li>Unit:</li>
+                        <li>Packaging:</li>
+                        <li>Quantity Received:</li>
+                        <li>Minimum Level:</li>
+                        <li>Maximum Level:</li>
+                        <li>Remaining:</li>
+                        <li>Date Recieved:</li>
+                        <li>Expiry Date:</li>
+                    </div>
+                    <div class="col-sm-6">
+                        <li>{{ product.department }}</li>
+                        <li>{{ product.supplier }}</li>
+                        <li>{{ product.category }}</li>
+                        <li>{{ product.hazard }}</li>
+                        <li>{{ product.lot_number }}</li>
+                        <li>{{ product.batch }}</li>
+                        <li>{{ product.size }}</li>
+                        <li>{{ product.unit }}</li>
+                        <li>{{ product.packaging }}</li>
+                        <li>{{ product.quantity_received  }}</li>
+                        <li>{{ product.minimum_level }}</li>
+                        <li>{{ product.maximum_level }}</li>
+                        <li>{{ product.remaining }}</li>
+                        <li>{{ product.date_received }}</li>
+                        <li>{{ product.expiry_date }}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="row tablelike">
+                    <div class="col-sm-6">
+                        <h3>Transactions
+                            <a class = "pull-right" href="{% url 'movements:transaction_new' pk=product.pk %}" data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+                        </h3>
+                        <hr>
+                        <div class="endless_page_template">
+                            {% include "products/paginate_transactions_stock_detail.html" %}
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style = "border-left: 1px solid red;">
+                        <h3>Adjustments
+                            <a class = "pull-right" href="{% url 'movements:adjustment_new' pk=product.pk %}" data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+                        </h3>
+                        <hr>
+                        <div class="endless_page_template">
+                            {% include "products/paginate_adjustments_stock_detail.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+        {{ block.super }}
+        {% load staticfiles %}
+        <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>\
+        <script>
+          $.endlessPaginate();
+
+
+          var available_stock = "{{ product.remaining  | safe | escapejs}}";
+          available_stock = available_stock*1
+          $("option").each(function(){
+            if ($(this).val() > available_stock) {
+              // $(this).attr("disabled", "disabled");
+              $(this).remove()
+            }
+          });
+
+
+        </script>
+{% endblock %}
+
+
+<!-- <h2>Entries:</h2>
+<div class="endless_page_template">
+    {% include "myapp/entries_page.html" %}
+</div>
+
+<h2>Other entries:</h2>
+<div class="endless_page_template">
+    {% include "myapp/other_entries_page.html" %}
+</div>
+
+ -->

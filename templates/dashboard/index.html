@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+	<div class="row">
+		<h1>Dashboard</h1>
+		<hr>
+		<div class="col-sm-6 inventory-messages">
+			<div id="chartContainer-1" class="canvas"></div>
+		</div>
+		<div class="col-sm-6 inventory-messages">
+			<div id="chartContainer-2" class="canvas"></div>
+		</div>
+		<hr>
+            <div class="col-sm-6 inventory-messages notified-access">
+            	<br>
+            	<li><a href="{% url 'products:out_of_stock' %}">Out of Stock</a></li>
+            	<li><a href="{% url 'products:below_minimum_stock' %}">Below Min Stock</a></li>
+            	<li><a href="{% url 'products:over_maximum_stock' %}">Over Max Stock</a></li>
+            	<li><a href="{% url 'products:approaching_minimum_stock' %}">Approaching Min Stock</a></li>
+            	<li><a href="{% url 'products:at_minimum_stock' %}">At Minimun Stock</a></li>
+            </div>
+            <div class="col-sm-6 inventory-messages notified-access">
+            	<br>
+            	<li><a href="{% url 'products:expired_stock' %}">Expired</a></li>
+            	<li><a href="{% url 'products:expire_today_stock' %}">Expiring Today</a></li>
+            	<li><a href="{% url 'products:expire_this_week_stock' %}">Expiring this Week</a></li>
+            	<li><a href="{% url 'products:expire_this_month_stock' %}">Expiring this Month</a></li>
+            </div>
+	</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+
+				var oos = "{{ out_of_stock_count  | safe | escapejs}}";
+				var bms = "{{ below_min_stock_count  | safe | escapejs}}";
+				var ams = "{{ appr_min_stock_count  | safe | escapejs}}";
+				var oms = "{{ over_stock_count  | safe | escapejs}}";
+				var exd = "{{ expire_today_count  | safe | escapejs}}";
+				var exw = "{{ expire_this_week_count  | safe | escapejs}}";
+				var exm = "{{ expire_this_month_count  | safe | escapejs}}";
+				var ex = "{{ expired_count  | safe | escapejs}}";
+				var ems = "{{ at_min_stock_count  | safe | escapejs}}";
+
+				$("#chartContainer-1").CanvasJSChart({
+					backgroundColor: "rgba(255,255,255,0.5)",
+					title: {
+					    padding: 10,
+						text: "Stock Level Notifications"
+					},
+					data: [
+						{
+							type: "doughnut",
+							indexLabel: "{label}: {y}",
+							toolTipContent: "{label}: {y}",
+							dataPoints: [
+								{ label: "Out of Stock",              y: oos},
+								{ label: "Below Minimum Stock",       y: bms},
+								{ label: "Approaching Min Stock",     y: ams},
+								{ label: "Over Max Stock",            y: oms},
+								{ label: "At Minimun Stock",          y: ems}
+							]
+						}
+					]
+				});
+
+				$("#chartContainer-2").CanvasJSChart({
+					backgroundColor: "rgba(255,255,255,0.5)",
+					title: {
+						padding: 10,
+						text: "Expiry Notifications"
+					},
+					data: [
+						{
+							type: "doughnut",
+							indexLabel: "{label}: {y}",
+							toolTipContent: "{label}: {y}",
+							dataPoints: [
+								{ label: "Expiring Today",            y: exd},
+								{ label: "Epiring within a Week",     y: exw},
+								{ label: "Epiring within a month",    y: exm},
+								{ label: "Expired",                   y: ex}
+							]
+						}
+					]
+				});
+			});
+
+    	</script>
+{% endblock %}

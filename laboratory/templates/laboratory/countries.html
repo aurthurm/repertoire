@@ -1,0 +1,25 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	Country
+	<a class = "pull-right" href="{% url 'laboratory:country_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'laboratory:country_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'laboratory:country_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'laboratory:country_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+	<br>
+    <h2>Please Create a country</h2>
+    <p>This is the initial step in setting up your inventory. You must create a country first before anything else</p>
+    <p>After you create a country you can safely proceed to creatind a laboratory. </p>
+    <p>Without a country you will not be able to use the Inventory system in anyway. Laboratories and Suppliers depend directly to the countr(y/ies) you create here.</p>
+    <p>NB: You are seeing this message beacause you have not created any country as of now otherwise if a country exists, then you will not be able to see this message. If you have already created a country but you are seeing this message please <a href="{% url 'contact-developer' %}">contact the developer</a> or your IT department for assistance </p>
+    <br><br>
+{% endblock %}

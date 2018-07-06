@@ -1,0 +1,15 @@
+{% extends 'products/stocks_base.html' %}
+
+
+{% block stock_ %}
+    {{ department }}
+{% endblock %}
+
+
+{% block stocks_else %}
+	<br>
+	<h2>You have no inventory in this department</h2>
+	<p>Start creating your stocks and this page will auto populate</p>
+	<p>	NB: in order to create stocks, you need to have registered some items in your lab else go create some items first</p>
+	<br><br>
+{% endblock %}

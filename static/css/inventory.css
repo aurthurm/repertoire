@@ -1,0 +1,354 @@
+/*
+    App:       Clinical Laboratory Inventory Management System
+    Developer: Aurthur Musendame
+    Email:     aurthurmusendame@gmail.com
+    Phone:     +263776406399
+    ::::::     :::::::::::::::::::::::::::::::::::::::::::::::: 15-12-2016
+    Git :      www.github.com/aurthurm/Inventory.git
+*/
+
+
+
+/*
+    ****************************************************************
+                                                      GENERAL STYLES
+    ****************************************************************
+*/
+
+html {
+    min-height:100%;
+    position:relative;
+    padding-bottom: 50px;
+    max-width: 100%;
+}
+
+html,
+body {
+    background-image: url('../img/bg/contemporary.png');
+}
+
+#wrapper {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.center {
+    text-align: center;
+}
+
+.canvas {
+    height: 300px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+li {
+    list-style: none;
+}
+
+hr {
+    border: 1px solid rgba(0,0,0,.6);
+}
+
+.edit-this,
+.delete-this {        /* stock_base edit and delete glyph icons */
+    font-size: small;
+    padding: 5px;
+}
+
+.glyphicon-log-out,
+.glyphicon-remove,
+.glyphicon-lock {
+    color: rgb(255,0,0);
+}
+
+.glyphicon-log-in,
+.glyphicon-dashboard,
+.glyphicon-pencil,
+.glyphicon-cog,
+.glyphicon-question-sign {
+    color: rgb(0,0,255) !important;
+}
+
+.glyphicon-plus {
+    color: rgb(0,255,0);
+    border: 2px solid black;
+    margin-top: -10px;
+    padding : 15%;
+    border-radius: 50%;
+}
+
+.items-all {
+    margin-bottom: 10px;
+}
+
+/* Matching Height of Columns in Ajustments and transactions */
+.row.tablelike{
+    overflow: hidden;
+}
+
+.row.tablelike [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.endless_page_link,
+.endless_page_current {
+    margin: 2px 5px;
+    padding : 5px;
+}
+
+footer.site-footer {
+    position: absolute;
+    bottom:0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgba(0,0,0,.5);
+    margin: 0 10px;
+    padding: 5px 0 1px 0;
+}
+
+.site-footer p {
+    text-align: center;
+}
+
+.app-contents {
+    margin-left: -40px;
+    margin-right: -40px;
+}
+
+.notified-access li {
+    padding-left: 50px;
+}
+
+.warning-message-empty > div {
+    padding: 0 20px;
+}
+
+.warning-message-empty h2 {
+    text-decoration: underline;
+    color: red;
+}
+
+.active > a {
+    background-color: rgba(0,0,255,.4) !important;
+    font-weight: 600;
+}
+
+/*
+    ****************************************************************
+                                                              MODALS
+    ****************************************************************
+*/
+
+
+
+.modal-body {
+    padding: 5% 20%;
+}
+
+#login-modal {
+    margin-top: 10%;
+}
+
+.middle-page {
+    margin-top: 15%;
+}
+
+#contact-developer-modal {
+    margin-top: 5%;
+}
+
+
+
+/*
+    ****************************************************************
+                                                         NAVIGATIONS
+    ****************************************************************
+*/
+
+
+
+.inventory-app {
+    border-bottom: 1px solid rgba(0,0,0,.5);
+}
+
+.logo-text {
+    margin: 5px 0 5px -75px;
+}
+
+.user-info {
+    margin-right: -75px;
+    padding: -5px 0;
+}
+
+.navbar-default {
+    margin: 0 -20px;
+}
+
+.navbar {
+    min-height: 0px;
+    border-style: none none solid none;
+}
+
+.nav.navbar-nav li:hover {
+    background-color: rgba(0,0,190,.9);
+}
+
+.nav.navbar-nav li a {
+    padding: 5px 10px;
+}
+
+.dropdown-menu li:hover {
+    background-color: red;
+}
+
+.nav.navbar-nav li a:hover {
+    color: #000;
+}
+
+#searchform {
+    margin-top: 12.5px;
+}
+
+#item-searchform {
+    margin-top: 12.5px;
+}
+
+.item-search-correction {
+    margin-bottom: -10px;
+}
+
+.searched-item {
+    margin: 10px;
+}
+
+.searched-item > a {
+    padding: 10px;
+}
+
+
+
+/*
+    ****************************************************************
+                  Departments Background Images for departments.html
+    ****************************************************************
+*/
+
+
+
+.Haematology {
+    background-image: url('../img/dept/hematology.jpg');
+}
+
+.Blood {
+    background-image: url('../img/dept/blood.jpg');
+}
+
+.Chemistry {
+    background-image: url('../img/dept/chemistry.jpg');
+}
+
+.Bacteriology {
+    background-image: url('../img/dept/microbiology.jpg');
+}
+
+.Parasitology {
+    background-image: url('../img/dept/parasitology.jpg');
+}
+
+.HIV {
+    background-image: url('../img/dept/hiv.jpg');
+}
+
+.Laboratory {
+    background-image: url('../img/dept/laboratory.jpg');
+}
+
+.Histopathology {
+    background-image: url('../img/dept/histopathology.jpg');
+}
+
+.Serology {
+    background-image: url('../img/dept/serology.jpg');
+}
+
+.departments > div {
+    padding-bottom: 20px;
+}
+
+div.flatten-image {
+    background-image: linear-gradient(to right,
+        rgba(255,255,255,.1),
+        rgba(0,0,0,.8),
+        rgba(255,255,255,.1));
+    padding: 10px 0;
+    margin-bottom: 20px;
+    color: rgb(255,255,255);
+    font-size: 800;
+}
+
+
+
+/*
+    ****************************************************************
+                                                        STOCK DETAIL
+    ****************************************************************
+*/
+
+
+
+.stock {
+    background-color: #fff;
+    padding: 20px 0px  50px 10px;
+    margin-right: 5px;
+    box-shadow: -5px 2px 10px 3px #ccc;
+}
+
+.basket-add-btn {
+    display: inline !important;
+    font-size: 1.75rem;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-left: 30rem;
+}
+
+select#id_quantity {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.addToBasket {
+    margin-top: -0.5rem;
+}
+
+/*
+    ****************************************************************
+                                                        HELP SECTION
+    ****************************************************************
+*/
+
+.table.tb-wh {
+    background-color: #fff;
+}
+
+#basic-addon2 {
+    border: 1px solid aquamarine;
+}
+
+.form-control.fileinput {
+    padding: 0;
+}
+
+.selected-help {
+    color: rgba(0,0,255);
+}
+
+.glyph-help {
+    font-size: 1rem;
+    padding: 0.5%;
+    border: none;
+}

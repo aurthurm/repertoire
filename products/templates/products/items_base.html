@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+	<div class="row item-search-correction">
+		<div class="col-sm-6"><h3>{% block item_count %} {% endblock %}</h3></div>
+		<div class="col-sm-4">
+			<h3><a class = "pull-right" href="{% url 'products:item_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a></h3>
+		</div>
+		<div class="col-sm-2">
+			<form id="item-searchform" action="{% url 'products:item_search_list' %}" method="get" accept-charset="utf-8">
+				<div class="input-group">
+					<input type="text" class="form-control searchfield" id="searchbox" name="q" placeholder="Item search Only">
+					<span class="input-group-btn">
+						<button class="btn btn-default searchbutton" type="submit">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</span>
+				</div><!-- /input-group -->
+			</form>
+		</div>
+	</div>
+	<hr>
+	{% if items %}
+		<div class="row">
+			{% for item in items %}
+				<div class = "col-sm-3 items-all">
+					<li>
+						<a class="btn btn-default" href="{% url 'products:item_edit' pk=item.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+						<span> </span>
+						<a class="btn btn-default" href="{% url 'products:item_remove' pk=item.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+						<a href="{% url 'products:item_detail' pk=item.pk %}" title="">{{ item.name }}</a></li>				
+				</div>
+			{% endfor %}
+		</div>
+
+		{% if items.has_other_pages %}
+			<ul class="pagination">
+				{% if items.has_previous %}
+					<li><a href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&laquo;</span></li>
+				{% endif %}
+				{% for i in items.paginator.page_range %}
+					{% if items.number == i %}
+						<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+					{% else %}
+					<li><a href="?page={{ i }}">{{ i }}</a></li>
+					{% endif %}
+				{% endfor %}
+				{% if items.has_next %}
+				<li><a href="?page={{ items.next_page_number }}">&raquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&raquo;</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+	{% else %}
+        <div class="row warning-message-empty">
+            <div class="bg-danger">
+                {% block items_else %} {% endblock %}
+            </div>
+        </div>
+	{% endif %}
+
+{% endblock %}

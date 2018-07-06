@@ -1,0 +1,24 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	Laboratory
+	<a class = "pull-right" href="{% url 'laboratory:laboratory_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'laboratory:laboratory_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'laboratory:laboratory_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'laboratory:laboratory_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+	<br>
+    <h2>Create a Laboratory</h2>
+    <p>This is the second step after creating a country where the laborator(y/ies) will be registered. If you have not created a country. Please proceed to creating a country first and then return</p>
+    <p>After creating a laboratory you can then proceed to register your Laboratory departments</p>
+    <p>NB: You are seeing this message beacause you have not created any laboratory as of now otherwise if a laboratory exists, then you will not be able to see this message. If you have already created a laboratory but you are seeing this message please <a href="{% url 'contact-developer' %}">contact the developer</a> or your IT department for assistance </p>
+    <br><br>
+{% endblock %}

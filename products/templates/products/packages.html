@@ -1,0 +1,22 @@
+{% extends 'multies_base.html' %}
+
+{% block multi_header %}
+	All Packages
+	<a class = "pull-right" href="{% url 'products:package_new' %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a>
+{% endblock %}
+
+{% block multi_glyphs %}
+    <a class="btn btn-default" href="{% url 'products:package_edit' pk=multi.pk %}"  data-toggle="tooltip" data-placement="right" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a class="btn btn-default" href="{% url 'products:package_remove' pk=multi.pk %}"   data-toggle="tooltip" data-placement="right" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+{% endblock %}
+
+{% block multi_url %}
+    {% url 'products:package_detail' pk=multi.pk %}
+{% endblock %}
+
+{% block multi_else %}
+<br>
+    <h2>You have not created any Packages yet</h2>
+    <p>Start to create a list of packages that you are likely to use in your inventory system</p>
+    <br><br>
+{% endblock %}

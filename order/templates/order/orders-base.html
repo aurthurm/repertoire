@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br>
+    {% block orders_navigation %} {% endblock %}
+
+    {% if allOrders %}
+        <table class = "table table-hover table-striped">
+
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>Ordering Department</th>
+              <th>Date Created</th>
+              <th>Processed ?</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in allOrders %}
+              <tr>
+                <td>{{ order.order_number }}</td>
+                <td>{{ order.ordering_dept }}</td>
+                <td>{{ order.created }}</td>
+                <td>{{ order.order_state }}</td>
+                <td><a href="{% url 'order:view_order' order_id=order.pk %}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if allOrders.has_other_pages %}
+          <ul class="pagination">
+            {% if allOrders.has_previous %}
+              <li><a href="?page={{ allOrders.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in allOrders.paginator.page_range %}
+              {% if allOrders.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if allOrders.has_next %}
+            <li><a href="?page={{ allOrders.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+      {% else %}
+          <div class="center">
+              {% block orders_else %} {% endblock %}
+          </div>
+      {% endif %}
+
+{% endblock %}

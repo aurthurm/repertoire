@@ -1,0 +1,82 @@
+{% extends 'help/help.html' %}
+			
+{% block help %}
+
+	<br>
+	<h4 class="text-center">Selected: <span class="selected-help">Settings</span></h4>
+	<br>
+
+	<p>This is the initial and the most crucial step when setting up your Inventoy System</p>
+	<p>Follow these steps to configure the system correctly</p>
+
+	<table class="table">
+
+	  <thead>
+	    <tr>
+	      <th>Step</th>
+	      <th>Description</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <tr>
+			<th scope="row">1</th>
+			<td>Register Your Country First</td>
+	    </tr>
+
+	    <tr>
+	        <th scope="row">2</th>
+	        <td>
+	        	<p>Create a laboratory for your Country</p>
+			</td>
+	    </tr>
+
+	    <tr>
+			<th scope="row">3</th>
+			<td>
+	      		<p>Create Departments for your Laboratory by selcting an appropriate department on the drop down list</p>
+				<p>Also Select the Laboratory and add it as a department. This is crucial because there are those stocks that do not fall into a particular department (they span a wide array of departments e.g gloves and slides). Its makes sense to add them to the whole lab in order to accomodate all departments</p>				
+			</td>
+	    </tr>
+	    <tr>
+	    	<th>NB</th>
+	    	<td>The following items carry no dependency upon registration. You can begin to register or ceate any of your choice</td>
+	    </tr>
+	    <tr>
+			<th scope="row">4</th>
+			<td>
+				<p>Register Hazads from the drop down list be selecting apprpritate ones for your inventories</p>
+				<p>In the Description tab, you can describe the Hazard you Selected</p>
+			</td>
+	    </tr>
+
+	    <tr>
+			<th scope="row">5</th>
+			<td>Register Units of Measurement from the drop down list be selecting apprpritate ones for your inventories</td>
+	    </tr>
+
+	    <tr>
+			<th scope="row">6</th>
+			<td>Register Packages from the drop down list be selecting apprpritate ones for your inventories</td>
+	    </tr>
+
+	    <tr>
+			<th scope="row">7</th>
+			<td>Register Categories from the drop down list be selecting apprpritate ones for your inventories
+			<p>In the Description tab, you can describe your selected Category</p></td>
+	    </tr>
+
+	    <tr>
+			<th scope="row">8</th>
+			<td>
+			<p>Register your Stores here. You can create multiple stores (storage rooms or facilities) 
+			e.g chemical Stores, Main Stores, Store Room 1</p>
+			<p>In the Description tab, you can describe what your Store's or whatever</p>
+			</td>
+	    </tr>
+
+	  </tbody>
+
+	</table>
+
+{% endblock %}

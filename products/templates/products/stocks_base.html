@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+	<h3>{% block stock_ %} {% endblock %} {{ stocks_total }}<a class = "pull-right" href="{% url 'products:stock_new' department_id %}"  data-toggle="tooltip" data-placement="left" title="Create New"><span class="glyphicon glyphicon-plus"></span></a></h3>
+	<hr>
+	{% if allProducts %}
+		<table class = "table table-hover table-striped">
+
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th></th>
+					<th>Departmet</th>
+					<th>Supplier</th>
+					<th>Lot Number</th>
+					<th>Batch</th>
+					<th>Size</th>
+					<th>Unit</th>
+					<th>Packaging</th>
+					<th>Quantity</th>
+					<th>Min Level</th>
+					<th>Avail</th>
+					<th>Expiry</th>
+	                <!-- <th></th> -->
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in allProducts %}
+					<tr>
+						<td>
+							<a href="{% url 'products:stock_detail' department_id=product.department.pk pk=product.pk %}" title="">{{ product.name }}</a></td>
+	                    <td>
+	                        <a class="edit-this" href="{% url 'products:stock_edit' pk=product.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	                    </td>
+						<td>{{ product.department }}</td>
+						<td>{{ product.supplier }}</td>
+						<td>{{ product.lot_number }}</td>
+						<td>{{ product.batch }}</td>
+						<td>{{ product.size }}</td>
+						<td>{{ product.unit }}</td>
+						<td>{{ product.packaging }}</td>
+						<td>{{ product.quantity_received }}</td>
+						<td>{{ product.minimum_level }}</td>
+						<td>{{ product.remaining }}</td>
+						<td>{{ product.expiry_date }}</td>
+						<!-- <td><a class="delete-this" href="{% url 'products:stock_remove' pk=product.pk %}"><span class="glyphicon glyphicon-remove"></span></a></td> -->
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{% if allProducts.has_other_pages %}
+			<ul class="pagination">
+				{% if allProducts.has_previous %}
+					<li><a href="?page={{ allProducts.previous_page_number }}">&laquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&laquo;</span></li>
+				{% endif %}
+				{% for i in allProducts.paginator.page_range %}
+					{% if allProducts.number == i %}
+						<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+					{% else %}
+					<li><a href="?page={{ i }}">{{ i }}</a></li>
+					{% endif %}
+				{% endfor %}
+				{% if allProducts.has_next %}
+				<li><a href="?page={{ allProducts.next_page_number }}">&raquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&raquo;</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+
+	{% else %}
+        <div class="row warning-message-empty">
+            <div class="bg-danger">
+                {% block stocks_else %} {% endblock %}
+            </div>
+        </div>
+	{% endif %}
+
+{% endblock %}

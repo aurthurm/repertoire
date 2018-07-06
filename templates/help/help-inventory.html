@@ -1,0 +1,62 @@
+{% extends 'help/help.html' %}
+			
+{% block help %}
+
+	<br>
+	<h4 class="text-center">Selected: <span class="selected-help">Inventory</span></h4>
+	<br>
+
+	<p>This is where all the magic happens: Items and Stocks creation, Stock Adjustments and Transactions e.t.c </p>
+	<p>Lets get a deep dive and clear up some confusion.</p>
+	<br>
+	<h4> What is the difference between Items and Stocks ?</h4>
+	<p>Stocks Depend on Items. You cannot register a stock without Item registration. If an item exists, then, you are able create multi Lot Numbers of the Stock that corresponds to the Item. e.g Say you create an item called Slides, then, when you receice slides from your supplier, in order to create the corresponding Stock (Slides), you will select an item and add the Lot number and other details. Items have not details associated with them. Stocks have details associated with them for example name(item), lot umber, supplier, unit, hazard etc</p>
+
+	<p>Items are created for the ease of use the Inventory system, it will help you avoid errors like spelling mismatch when creating new stocks etc. Items are only created once and never again</p>
+
+	<p>It is of paramount importance to note that you cannot delete an item once a corresponding stock exits</p>
+	
+	<h4>Items</h4>
+	<p>There are different ways to create Items. Items can be created and assigned to the whole Laboratory (not department specific.Good for those items that span multi departments e.g Glove, Slides, Sodium hypochlorite) or department specific (Departmemt Specific Items e.g FacsFlow in Haemtology Only).</p>
+
+	<p>Creating an Item</p>
+	<ol>
+		<li>Go to Inventoty Menu's dropdown menu and select the Items sub-menu. </li>
+		<li>Click the plus icon { <span class="glyphicon glyphicon-plus glyph-help"></span> } and fill in all fileds before save. You can assign each item to a specific department. Images are not mandatory.</li>
+		<li>You can also create Items inside a Department. On the department listng page you will find an Items button for each department</li>
+	</ol>
+	
+	<h4>Stocks</h4>
+	<p>The logic is as is that of Items with aditional stock details that will need to be filled</p>
+
+	<hr>
+	<h4>Transactions VS Adustments</h4>
+	<p>When you issue a Stock from your Store(s) to a department you are creating a TRANSACTION (issues) </p>
+	<p>When you change your stock Level based on any of the following adjustment types you are creating an ADJUSTMENT :</p>
+	<ol>
+		<li>1. Transfer In</li>
+		<li>2. Transfer Out</li>
+		<li>3. Damaged</li>
+		<li>4. Lost</li>
+		<li>5. Expired</li>
+		<li>6. Theft</li>
+	</ol>
+
+	<br>
+	<h4>Transactions</h4>
+	<p>There are 2 routes to creating a transaction:</p>
+
+	<h5><i><b>Route 1</b></i></h5>
+	<p>1. Hover over the invetory menu and select Transacions. You will be redirected to a page with a tabular list of all transactions that ever hapenned</p>
+	<p>2. Select the Stock you want to ISSUE / Transact. The stock reads: Stock Name => Lot Number : Remaining Stock</p>
+	<p>3. Fill in all the required details and click save NB: All fields are mandatory</p>
+
+	<h5><i><b>Route 2</b></i></h5>
+	<p>Navigate to a specific Stock</p>
+	<p>Click the plus icon { <span class="glyphicon glyphicon-plus glyph-help"></span> } and do step 2 and 3 of route 1</p>
+
+	<br>
+	<h4>Adjustments</h4>
+	<p>Apply the same logic as that of transactions</p>
+
+{% endblock %}

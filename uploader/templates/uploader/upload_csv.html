@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<p>Adding all your laboratory Items can be tediuos we know. So we have prepared this section to make it easy for you.
+  Anyway, some how easy thought there still human input too. </p>
+<p>You can create an Excel File with the exact headings presented in the table below. We have also included some example data. </p>
+<hr>
+
+<table class="table tb-wh">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">departments</th>
+      <th scope="col">image</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th></th>
+      <td>AST</td>
+      <td>3</td>
+      <td></td>
+      <td>Aspartate TransAminase</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>MacKonkey Agar</td>
+      <td>5</td>
+      <td></td>
+      <td>Microbiology Bacterial Agar</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>Anti A</td>
+      <td>2</td>
+      <td></td>
+      <td>Antiboby A Antisera</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<p class="lead"><b>NB:</b> <span> </span>The <i>id</i> and <i>image</i> columns are to be left blank. The Departmet Column only takes integers that represent the departments. </p>
+<hr>
+<form action="{% url 'uploader:upload_csv' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+    {% csrf_token %}
+    <div class="col-sm-3">
+    </div>
+    <div class="input-group col-sm-6">
+      <label for="name" class="control-label">
+        <input type="file" name="thefile" required="True" class="form-control fileinput" placeholder="Browse csv File e.g /file/name.csv" aria-describedby="basic-addon2">
+        <a class="input-group-addon btn btn-sm" id="basic-addon2"> <span class="glyphicon glyphicon-upload"></span>Upload </a>
+      </label>
+    </div>
+</form>
+
+
+{% endblock %}

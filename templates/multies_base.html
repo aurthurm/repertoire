@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+<!--    multies_base.html
+        A base template for rendering multiple files : categories, units, packages etc
+-->
+
+{% block content %}
+    <h3>{% block multi_header %} {% endblock %}</h3>
+    <hr>
+    {% if multies %}
+        <div class="row">
+            {% for multi in multies %}
+                <div class="col-sm-4">
+                <h3>
+                    {% block multi_glyphs %} {% endblock %}
+                    <a href="{% block multi_url %} {% endblock %}">{{ multi.name }}</a></h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="row warning-message-empty">
+            <div class="bg-danger">
+                {% block multi_else %} {% endblock %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

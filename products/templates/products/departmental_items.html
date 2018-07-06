@@ -1,0 +1,16 @@
+{% extends 'products/items_base.html' %}
+
+
+{% block item_count %}
+    Items: {{ items_count }}
+{% endblock %}
+
+{% block items_else %}
+<br>
+<h2>You have not registered any Items for this dept</h2>
+<p>Start populating items that your lab uses. </p>
+<p>You have to have an existing item in order to create a corresponding stock. You will not be able to create any stocks without any existing items</p>
+<p>Note: During the creation of an item, if you choose to specify the department underwhich an item lies,then that item will be automatically linked to that department and you will be able to access it via the department section otherwise you wont</p>
+<br><br>
+
+{% endblock %}
