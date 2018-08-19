@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth import views as viewz
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView
 from ajax_select import urls as ajax_select_urls
 from django.urls import path, include
 from . import views
@@ -24,8 +25,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('ajax_select/', include(ajax_select_urls)),
     path('admin/', admin.site.urls),
-    path('accounts/login/', viewz.login, name='login'),
-    path('accounts/logout/', viewz.logout, name='logout', kwargs={'next_page': '/'}),
+    # path('accounts/login/', auth_views.login, name='login'),
+    path('accounts/login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('accounts/logout/', auth_views.logout, name='logout', kwargs={'next_page': '/'}),
     path('', views.dashboard, name='dashboard'),
     path('help/', views.help_section, name='help-section'),
     path('help/settings', views.help_settings, name='help-settings'),

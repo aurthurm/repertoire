@@ -21,7 +21,7 @@ $('.dropdown-submenu a.drop').on("click", function(e){
 $('#login-modal').modal('show');
 $('#username').focus();
 
-/* login modal */
+/* Developer modal */
 $('#contact-developer-modal').modal('show');
 $('#subject').focus();
 

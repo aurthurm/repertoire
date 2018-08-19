@@ -14,21 +14,39 @@
 			<div id="chartContainer-2" class="canvas"></div>
 		</div>
 		<hr>
-            <div class="col-sm-6 inventory-messages notified-access">
-            	<br>
-            	<li><a href="{% url 'products:out_of_stock' %}">Out of Stock</a></li>
-            	<li><a href="{% url 'products:below_minimum_stock' %}">Below Min Stock</a></li>
-            	<li><a href="{% url 'products:over_maximum_stock' %}">Over Max Stock</a></li>
-            	<li><a href="{% url 'products:approaching_minimum_stock' %}">Approaching Min Stock</a></li>
-            	<li><a href="{% url 'products:at_minimum_stock' %}">At Minimun Stock</a></li>
-            </div>
-            <div class="col-sm-6 inventory-messages notified-access">
-            	<br>
-            	<li><a href="{% url 'products:expired_stock' %}">Expired</a></li>
-            	<li><a href="{% url 'products:expire_today_stock' %}">Expiring Today</a></li>
-            	<li><a href="{% url 'products:expire_this_week_stock' %}">Expiring this Week</a></li>
-            	<li><a href="{% url 'products:expire_this_month_stock' %}">Expiring this Month</a></li>
-            </div>
+		<div class="col-sm-3">
+			<br>
+			<div class="alert alert-success">
+				<h3 class="lead text-muted">Unprocessed Orders</h3>
+				<p class="badge">23</p>
+			</div>
+		</div>
+		<div class="col-sm-3 inventory-messages notified-access">
+			<br>
+			<div class="list-group">
+				<a href="{% url 'products:out_of_stock' %}" class="list-group-item">Out of Stock</a>
+				<a href="{% url 'products:below_minimum_stock' %}" class="list-group-item">Below Min Stock</a>
+				<a href="{% url 'products:over_maximum_stock' %}" class="list-group-item">Over Max Stock</a>
+				<a href="{% url 'products:approaching_minimum_stock' %}" class="list-group-item">Approaching Min Stock</a>
+				<a href="{% url 'products:at_minimum_stock' %}" class="list-group-item">At Minimun Stock</a>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<br>
+			<div class="alert alert-danger">
+				<h3 class="text-muted">Unprocessed Orders</h3>
+				<p class="badge">234</p>
+			</div>
+		</div>
+		<div class="col-sm-3 inventory-messages notified-access">
+			<br>
+			<div class="list-group">
+				<a href="{% url 'products:expired_stock' %}" class="list-group-item">Expired</a>
+				<a href="{% url 'products:expire_today_stock' %}" class="list-group-item">Expiring Today</a>
+				<a href="{% url 'products:expire_this_week_stock' %}" class="list-group-item">Expiring this Week</a>
+				<a href="{% url 'products:expire_this_month_stock' %}" class="list-group-item">Expiring this Month</a>
+			</div>
+		</div>
 	</div>
 
 {% endblock %}
