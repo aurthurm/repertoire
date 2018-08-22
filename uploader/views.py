@@ -2,7 +2,8 @@ from django.shortcuts import render
 from products.resources import ItemResource
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-import tablib, csv, os, path, io
+import tablib, csv, os, io
+from sys import path
 from tablib import Dataset
 from products.forms import ItemForm
 from django.conf import settings
@@ -10,6 +11,7 @@ from django.core.files.storage import FileSystemStorage
 
 def upload_csv(request):
     if request.method == 'POST' and request.FILES['thefile']:
+        print("Request Received")
         paramFile = request.FILES['thefile'].read()
         fs = FileSystemStorage()
         filename = fs.save(request.FILES['thefile'].name, request.FILES['thefile'])
@@ -31,8 +33,8 @@ def upload_csv(request):
             if form.is_valid():
                 form.save()
 
-        return render(request, 'uploader/upload_csv.html')
-    return render(request, 'uploader/upload_csv.html')
+        return HttpResponseRedirect("/inventory/items")
+    return render(request, 'uploader/upload_csvs.html')
 
 def export_csv(request):
     item_resource = ItemResource()

@@ -46,17 +46,20 @@
 <hr>
 <p class="lead"><b>NB:</b> <span> </span>The <i>id</i> and <i>image</i> columns are to be left blank. The Departmet Column only takes integers that represent the departments. </p>
 <hr>
-<form action="{% url 'uploader:upload_csv' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
-    {% csrf_token %}
-    <div class="col-sm-3">
-    </div>
-    <div class="input-group col-sm-6">
-      <label for="name" class="control-label">
-        <input type="file" name="thefile" required="True" class="form-control fileinput" placeholder="Browse csv File e.g /file/name.csv" aria-describedby="basic-addon2">
-        <a class="input-group-addon btn btn-sm" id="basic-addon2"> <span class="glyphicon glyphicon-upload"></span>Upload </a>
-      </label>
-    </div>
-</form>
+<br>
+<br>
+
+<div class="row" style="background-color: #ffffff; padding:5% 0 5% 0">
+  <div class="col-md-6 col-md-offset-4">
+      <form action="{% url 'uploader:upload_csv' %}" method="post" enctype="multipart/form-data" class="form-inline">
+      {% csrf_token %}
+        <div class="form-group">
+          <input type="file" class="form-control-file" aria-describedby="basic-addon2" id="name" name="thefile" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Upload File</button>
+      </form>
+  </div>
+</div>
 
 
 {% endblock %}
