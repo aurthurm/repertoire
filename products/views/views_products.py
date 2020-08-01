@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.shortcuts import render, get_object_or_404, redirect
 from products.models import *
 from laboratory.models import Department
 from products.forms import *
@@ -62,7 +62,7 @@ def stock_new(request, department_id):
         if form.is_valid():
             product = form.save(commit=False)
             product.save()
-        return redirect('products:stock_detail', department_id= department_id, pk=product.pk )
+            return redirect('products:stock_detail', department_id= department_id, pk=product.pk )
     else:
         initial = {
             'received_by': request.user,

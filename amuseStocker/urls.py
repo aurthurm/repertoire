@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from ajax_select import urls as ajax_select_urls
 from django.urls import path, include
 from . import views
@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('accounts/login/', auth_views.login, name='login'),
     path('accounts/login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('accounts/logout/', auth_views.logout, name='logout', kwargs={'next_page': '/'}),
+    path('accounts/logout/', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
     path('', views.dashboard, name='dashboard'),
     path('help/', views.help_section, name='help-section'),
     path('help/settings', views.help_settings, name='help-settings'),
